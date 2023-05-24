@@ -33,7 +33,7 @@ Al termine della partita il software deve comunicare il punteggio, cioè il nume
         return newDivElement;
     }
             
-            // creo una seconda funzione per inserire il secondo elemento
+    // creo una seconda funzione per inserire il secondo elemento
     function addCellElement(){
         const newCellElement = document.createElement('div');
         newCellElement.classList.add('cell');
@@ -45,10 +45,12 @@ Al termine della partita il software deve comunicare il punteggio, cioè il nume
     divElement.appendChild(gridElement);
         
     //evento per creare la pagina e resettarla ad ogni click
+
     button.addEventListener('click',
         function(){
 
             gridElement.innerHTML = '';
+            gridElement.classList.remove('inactive');
             let randomBomb = getRandomUniqueNumber(1,100, 16)
 
             // creo un array per inserire 16 numeri randomici (bombe)
@@ -61,28 +63,24 @@ Al termine della partita il software deve comunicare il punteggio, cioè il nume
                 const cellElement = addCellElement();
                 cellElement.innerHTML = i;
                 gridElement.appendChild(cellElement);
-                let esploso = false;
+                let esploso = 0;
                 // Funzione che mi permette di colorare le celle con un click, il colore varia a seconda dei due casi
                 cellElement.addEventListener('click',
                 function(){
                     cellElement.classList.toggle('select');
-                if (randomBomb.includes(i)){
-                    cellElement.classList.add('explode');
-                    alert('HAI PERSO');
-                    esploso = true;
-                    if (esploso = true){
-                    console.log('fine');
+                    if (randomBomb.includes(i)){
+                        cellElement.classList.add('explode');
+                        alert('HAI PERSO');
+                        esploso = 1;
+                        if (esploso = 1){
+                            gridElement.classList.add('inactive');
+                            alert('please restart the game with play button');
+                        }
                     }
-                }   
                 })
-                
-                
-                
-                
-                
             }
         }
-    )
+        )
 
     function getRandomUniqueNumber( min, max, elements ){
         const numbersList = [];
