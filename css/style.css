@@ -65,3 +65,13 @@ main{
     height: 10vh;
     border: 2px solid black;
 }
+
+
+.explode{
+    background-color: red;
+}
+
+
+.inactive{
+    pointer-events:unset;
+}
